@@ -1,0 +1,26 @@
+# Table of contents
+
+* [Overview](README.md)
+* [Lab Architecture](lab-architecture.md)
+* [AD Setup](ad-setup/README.md)
+  * [Setup Powershell Logging](ad-setup/setup-powershell-logging.md)
+* [Splunk Setup](splunk-setup.md)
+* [Caldera Setup](caldera-setup.md)
+
+## Account Management
+
+* [User Account Management](account-management/user-account-management/README.md)
+  * [User Created/Deleted](account-management/user-account-management/user-created-deleted.md)
+  * [User Password Changed/Reset](account-management/user-account-management/user-password-changed-reset.md)
+  * [User Account Disable/Enable](account-management/user-account-management/user-account-disable-enable.md)
+* [Computer Account Management](account-management/computer-account-management/README.md)
+  * [4741 & 4742 & 4743](account-management/computer-account-management/4741-and-4742-and-4743.md)
+* [Security Group Management](account-management/security-group-management/README.md)
+  * [Group Member Added/Removed](account-management/security-group-management/group-member-added-removed.md)
+  * [Change Detection in Group](account-management/security-group-management/change-detection-in-group.md)
+
+## Process Tracking
+
+* [Process Creation](process-tracking/process-creation/README.md)
+  * [4688](process-tracking/process-creation/4688.md)
+  * [4696](process-tracking/process-creation/4696.md)
