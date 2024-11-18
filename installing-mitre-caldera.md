@@ -58,21 +58,41 @@ npm audit fix --force
 Now we need to change the `conf/local.yml` with our required values.
 
 ```bash
-vim  /caldera/conf/local.yml
+vim  ./caldera/conf/local.yml
 
 # app.contact.http: http://SERVER-IP:8888
 # app.frontend.api_base_url: http://SERVER-IP:8888
 
-vim /caldera/plugins/magma/.env
+vim ./caldera/plugins/magma/.env
 # VITE_CALDERA_URL=http://SERVER-IP:8888
 
 python3 server.py --build --fresh
 
 # find passwords to login
-cat /caldera/conf/local.yml
+cat ./caldera/conf/local.yml
 ```
 
 Now we can type the server IP or hostname to access the caldera from a different machine.
+
+### Create Caldera service
+
+We will create a caldera service so that we can run the service in the background.
+
+```bash
+cd /etc/systemd/system/
+nano caldera.service
+# Add the below lines in the file and save
+[Unit]
+Description=MITRE Caldera Server
+
+[Service]
+User=root
+WorkingDirectory=/root/caldera
+ExecStart=/usr/bin/python3 server.py
+
+[Install]
+WantedBy=multi-user.target
+```
 
 ### References
 
