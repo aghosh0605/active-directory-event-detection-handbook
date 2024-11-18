@@ -29,11 +29,17 @@
 {% endtab %}
 
 {% tab title="CMD" %}
-
+```batch
+:: Change group description
+net group "GroupName" /comment:"New Group Description" /domain
+```
 {% endtab %}
 
 {% tab title="Powershell" %}
-
+```powershell
+# Change group description
+Set-ADGroup -Identity "GroupName" -Description "New Group Description"
+```
 {% endtab %}
 {% endtabs %}
 
@@ -43,7 +49,9 @@ For this example, we took a security-enabled local group. The commands are the s
 
 ### Event Viewer Logs
 
-_Attach the exported event logs for Event IDs 4735, 4737, and 4755 here._
+> Audit Success 15-11-2024 12:09:18 Microsoft Windows security auditing. 4735 Security Group Management\
+> Audit Success 15-11-2024 12:09:18 Microsoft Windows security auditing. 4737 Security Group Management\
+> Audit Success 15-11-2024 12:09:18 Microsoft Windows security auditing. 4755 Security Group Management
 
 ***
 
@@ -62,6 +70,50 @@ index=ad-test EventCode IN(4735,4737,4755)
 
 ### Splunk Logs
 
-_Attach relevant Splunk log outputs here to demonstrate detected group modifications._
+```
+11/18/2024 10:48:49 AM
+LogName=Security
+EventCode=4737
+EventType=0
+ComputerName=WIN-3BK7E06Q35B.test.com
+SourceName=Microsoft Windows security auditing.
+Type=Information
+RecordNumber=54599
+Keywords=Audit Success
+TaskCategory=Security Group Management
+OpCode=Info
+Message=A security-enabled global group was changed.
+
+Subject:
+	Security ID:		S-1-5-21-2889491314-2746541823-3071263440-500
+	Account Name:		administrator
+	Account Domain:		TEST
+	Logon ID:		0x44E7F
+
+Group:
+	Security ID:		S-1-5-21-2889491314-2746541823-3071263440-1109
+	Group Name:		splunk
+	Group Domain:		TEST
+
+Changed Attributes:
+	SAM Account Name:	-
+	SID History:		-
+
+Additional Information:
+	Privileges:		-
+```
+
+{% hint style="warning" %}
+This Event ID only indicates that the group has been changed. However, the respective Event IDs provide information about the changes made. So, it's better not to fully rely upon this Event ID.  \
+For example, if any members are added to the group the respective event IDs like 4728,4729,4732,4733,4756,4757 will show the specific logs for it.
+{% endhint %}
+
+To get more detailed info about what changed in the group. Please enable the required group policies mentioned [here](./) accordingly.&#x20;
+
+### References
+
+1. [https://learn.microsoft.com/en-us/powershell/module/activedirectory/set-adgroup?view=windowsserver2022-ps#description](https://learn.microsoft.com/en-us/powershell/module/activedirectory/set-adgroup?view=windowsserver2022-ps#description)
+2. [https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4735](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4735)
+3. [https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/audit-security-group-management](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/audit-security-group-management)
 
 ***

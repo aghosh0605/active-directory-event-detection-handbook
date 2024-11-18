@@ -13,11 +13,11 @@
   * [User Created/Deleted](account-management/user-account-management/user-created-deleted.md)
   * [User Password Changed/Reset](account-management/user-account-management/user-password-changed-reset.md)
   * [User Account Disable/Enable](account-management/user-account-management/user-account-disable-enable.md)
-* [Computer Account Management](account-management/computer-account-management/README.md)
-  * [4741 & 4742 & 4743](account-management/computer-account-management/4741-and-4742-and-4743.md)
+* [Computer Account Management](account-management/computer-account-management.md)
 * [Security Group Management](account-management/security-group-management/README.md)
   * [Group Member Added/Removed](account-management/security-group-management/group-member-added-removed.md)
   * [Change Detection in Group](account-management/security-group-management/change-detection-in-group.md)
+  * [Group Deleted](account-management/security-group-management/group-deleted.md)
 
 ## Process Tracking
 
