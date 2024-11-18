@@ -1,6 +1,6 @@
 # Security Group Management
 
-When modifying a group description in Active Directory, the change may not capture the exact details (like the updated description) in the logs by default. Instead, you’ll see a general "Group modified" entry in the Security logs. This event indicates that an object was modified but does not provide specifics about the attributes that were changed.
+When modifying a group in Active Directory, the change may not capture the exact details (like the updated description) in the logs by default. Instead, you’ll see a general "Group modified" entry in the Security logs. This event indicates that an object was modified but does not provide specifics about the attributes that were changed.
 
 We will take an example as **Group Description Change** and will try to collect the logs in which the value of Group Description will be available.
 
