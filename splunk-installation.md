@@ -40,4 +40,4 @@ After that restart the Windows Universal Forwarder to apply the changed settings
 1. [https://lantern.splunk.com/Security/Product\_Tips/Enterprise\_Security/Configuring\_Windows\_security\_audit\_policies\_for\_Enterprise\_Security\_visibility](https://lantern.splunk.com/Security/Product\_Tips/Enterprise\_Security/Configuring\_Windows\_security\_audit\_policies\_for\_Enterprise\_Security\_visibility)
 2. [https://docs.splunk.com/Documentation/Splunk/9.3.2/Data/MonitorWindowseventlogdata](https://docs.splunk.com/Documentation/Splunk/9.3.2/Data/MonitorWindowseventlogdata)
 3. [https://docs.splunk.com/Documentation/Forwarder/9.3.2/Forwarder/Installtheuniversalforwardersoftware](https://docs.splunk.com/Documentation/Forwarder/9.3.2/Forwarder/Installtheuniversalforwardersoftware)
-4.
+4. [https://docs.splunk.com/Documentation/Splunk/9.3.2/Data/UsetheHTTPEventCollector](https://docs.splunk.com/Documentation/Splunk/9.3.2/Data/UsetheHTTPEventCollector)
