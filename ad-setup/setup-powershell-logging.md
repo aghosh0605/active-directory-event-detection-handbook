@@ -58,3 +58,9 @@ To verify that PowerShell logging is properly configured, look for the following
 * EventCode = 4104
 * EventCode = 4688 and Process\_Name contains PowerShell
 * EventCode = 7045 and Process\_Name contains PowerShell
+
+### References
+
+1. [https://docs.splunk.com/Documentation/UBA/5.4.1/GetDataIn/AddPowerShell](https://docs.splunk.com/Documentation/UBA/5.4.1/GetDataIn/AddPowerShell)
+2. [https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about\_logging\_windows?view=powershell-7.4\&viewFallbackFrom=powershell-7.2](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about\_logging\_windows?view=powershell-7.4\&viewFallbackFrom=powershell-7.2)
+3. [https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about\_eventlogs?view=powershell-5.1](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about\_eventlogs?view=powershell-5.1)

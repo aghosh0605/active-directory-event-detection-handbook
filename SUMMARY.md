@@ -4,7 +4,7 @@
 * [Lab Architecture](lab-architecture.md)
 * [AD Setup](ad-setup/README.md)
   * [Setup Powershell Logging](ad-setup/setup-powershell-logging.md)
-* [Splunk Setup](splunk-setup.md)
+* [Splunk Installation](splunk-installation.md)
 * [Installing MITRE Caldera](installing-mitre-caldera.md)
 
 ## Account Management
