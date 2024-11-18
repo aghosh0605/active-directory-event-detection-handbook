@@ -5,7 +5,7 @@
 * [AD Setup](ad-setup/README.md)
   * [Setup Powershell Logging](ad-setup/setup-powershell-logging.md)
 * [Splunk Setup](splunk-setup.md)
-* [Caldera Setup](caldera-setup.md)
+* [Installing MITRE Caldera](installing-mitre-caldera.md)
 
 ## Account Management
 
