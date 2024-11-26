@@ -193,6 +193,12 @@ falsepositives:
 level: high
 ```
 
+{% code overflow="wrap" %}
+```splunk-spl
+source="WinEventLog:Security" EventCode=4720 SubjectUserName="*$" SubjectUserSid="S-1-5-21-*"
+```
+{% endcode %}
+
 </details>
 
 <details>
@@ -227,6 +233,12 @@ falsepositives:
 level: medium
 
 ```
+
+{% code overflow="wrap" %}
+```splunk-spl
+Image IN ("*\\net1.exe", "*\\net.exe") CommandLine IN ("*iis_uses*", "*iis_user*")
+```
+{% endcode %}
 
 </details>
 
@@ -268,8 +280,13 @@ detection:
 falsepositives:
 - None
 level: high
-
 ```
+
+{% code overflow="wrap" %}
+```splunk-spl
+source="WinEventLog:Security" (EventCode=4720 TargetUserName="*$") OR (EventCode=4781 NewTargetUserName="*$" NOT OldTargetUserName="*$")
+```
+{% endcode %}
 
 </details>
 
@@ -310,6 +327,12 @@ falsepositives:
 level: high
 ```
 
+{% code overflow="wrap" %}
+```splunk-spl
+NewProcessName IN ("*\\net1.exe", "*\\net.exe") CommandLine="*net*" CommandLine="*user*" CommandLine="*add*"
+```
+{% endcode %}
+
 </details>
 
 <details>
@@ -342,6 +365,12 @@ falsepositives:
 - None
 level: high
 ```
+
+{% code overflow="wrap" %}
+```splunk-spl
+source="WinEventLog:Security" EventCode=4720 TargetUserName IN ("elie", "WADGUtilityAccount")
+```
+{% endcode %}
 
 </details>
 
@@ -379,6 +408,12 @@ falsepositives:
 - IAM account lifecycle software
 level: medium
 ```
+
+{% code overflow="wrap" %}
+```splunk-spl
+source="WinEventLog:Security" EventCode=4720 EventCode=4726 NOT Computer="%domain_controllers%"
+```
+{% endcode %}
 
 </details>
 

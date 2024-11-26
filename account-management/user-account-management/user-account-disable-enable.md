@@ -124,6 +124,14 @@ Target Account:
 {% endtab %}
 {% endtabs %}
 
+### Splunk Alert
+
+
+
+### Sigma Rules
+
+
+
 ***
 
 ### References
