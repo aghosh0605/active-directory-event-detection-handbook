@@ -154,6 +154,22 @@ For this example, we took a security-enabled local group called **Backup Operato
 {% endtab %}
 {% endtabs %}
 
+### Splunk Alert
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>Alert Manager Dashboard</p></figcaption></figure>
+
+### Sigma Rules
+
+{% tabs %}
+{% tab title="First Tab" %}
+
+{% endtab %}
+
+{% tab title="Second Tab" %}
+
+{% endtab %}
+{% endtabs %}
+
 ***
 
 ### References
