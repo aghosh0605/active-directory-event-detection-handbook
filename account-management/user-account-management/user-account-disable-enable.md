@@ -1,6 +1,6 @@
 # User Account Disable/Enable
 
-### Event Description
+Event Description
 
 * **Event ID 4722**: This event is logged when a user account is enabled. It records details like the target account and the administrator or service that enabled the account. Monitoring this event helps detect unauthorized account reactivations, which could indicate an attempt to misuse a previously disabled account.
 * **Event ID 4725**: This event is generated when a user account is disabled. It includes details such as the target account and the account of the administrator or service that disabled the account. Tracking account disablement can help detect administrative actions on user accounts, which could reveal security responses to suspicious activity or policy enforcement.
@@ -126,11 +126,57 @@ Target Account:
 
 ### Splunk Alert
 
-
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
 
 ### Sigma Rules
 
+<details>
 
+<summary>Disabled guest or builtin account activated</summary>
+
+```yaml
+title: Disabled guest or builtin account activated
+description: Detects scenarios where an attacker enables a disabled builtin account.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account
+- https://www.stigviewer.com/stig/windows_xp/2013-03-14/finding/V-3369
+tags:
+- attack.persistence
+- attack.t1098
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection_event:
+    EventID: 4722
+  selection_username:
+    TargetUserName:
+      - Guest
+      - DefaultAccount
+      - support_388945a0   # Remote assistance
+      - HelpAssistant      # Managed by Remote Desktop Help Session Manager service
+      - WDAGUtilityAccount # Defender Application Guard
+  selection_usersid:
+    TargetUserSid|endswith:
+      - '-501' # Guest account
+      - '-503' # Default System Managed Account (DSMA) starting Windows 10.1607
+      - '1001' # support_388945a0
+  condition: selection_event and (selection_username or selection_usersid)
+falsepositives:
+- SYSPREP deployement
+- Usage of Remote assistance
+level: medium
+```
+
+{% code overflow="wrap" %}
+```splunk-spl
+source="WinEventLog:Security" EventCode=4722 TargetUserName IN ("Guest", "DefaultAccount", "support_388945a0", "HelpAssistant", "WDAGUtilityAccount") OR TargetUserSid IN ("*-501", "*-503", "*1001")
+```
+{% endcode %}
+
+</details>
 
 ***
 

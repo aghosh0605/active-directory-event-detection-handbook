@@ -110,6 +110,14 @@ For example, if any members are added to the group the respective event IDs like
 
 To get more detailed info about what changed in the group. Please enable the required group policies mentioned [here](./) accordingly.&#x20;
 
+### Splunk Alert
+
+<figure><img src="../../.gitbook/assets/image (2).png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
+
+### Sigma Rules
+
+
+
 ### References
 
 1. [https://learn.microsoft.com/en-us/powershell/module/activedirectory/set-adgroup?view=windowsserver2022-ps#description](https://learn.microsoft.com/en-us/powershell/module/activedirectory/set-adgroup?view=windowsserver2022-ps#description)

@@ -147,7 +147,9 @@ Target Account:
 
 ### Splunk Alert
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
 
 ### Sigma Rules
 
