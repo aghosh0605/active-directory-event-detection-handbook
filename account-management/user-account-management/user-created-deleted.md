@@ -1,6 +1,6 @@
 # User Created/Deleted
 
-### Event Description
+Event Description
 
 * **Event ID 4720**: This event is generated when a new user account is created in Active Directory. It includes details such as the user who created the account, the name of the new account, and the time of creation.
 * **Event ID 4726**: This event is logged when a user account is deleted. It records the user who initiated the deletion, the name of the account deleted, and the timestamp.
@@ -154,6 +154,233 @@ Additional Information:
 ```
 {% endtab %}
 {% endtabs %}
+
+### Splunk Alert
+
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
+
+### Sigma Rules
+
+<details>
+
+<summary>User account created by a computer account</summary>
+
+```yaml
+title: User account created by a computer account
+description: Detects scenarios where an attacker would abuse some privileges while realying host credentials to escalate privileges.
+references:
+- https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4741
+tags:
+- attack.persistence
+- attack.t1136 # user creation
+- attack.defense_evesion
+- attack.t1036 # masquerading
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4720
+    SubjectUserName|endswith: '$' # Computer account
+    SubjectUserSid|startswith: 'S-1-5-21-' # SYSTEM account 'S-1-5-18' would trigger a false positive
+  filter:
+    TargetUserName|endswith: '$' # covered in another rule: User account creation disguised in a computer account
+  condition: selection
+falsepositives:
+- Exchange servers
+level: high
+```
+
+</details>
+
+<details>
+
+<summary>User enumeration and creation related to Manic Menagerie 2.0 (via cmdline)</summary>
+
+```yaml
+title: User enumeration and creation related to Manic Menagerie 2.0 (via cmdline)
+description: Detects user enumeration and/or creation performed by Manic Menagerie.
+references:
+- https://unit42.paloaltonetworks.com/manic-menagerie-targets-web-hosting-and-it/
+- https://www.cyber.gov.au/sites/default/files/2023-03/report_manic_menagerie.pdf
+- https://csl.com.co/rid-hijacking/
+tags:
+- attack.persistence
+- attack.t1136.001
+author: mdecrevoisier
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection:
+    Image|endswith:
+      - \net1.exe
+      - \net.exe
+    CommandLine|contains:
+      - iis_uses
+      - iis_user
+  condition: selection
+falsepositives:
+- Administrator activity 
+level: medium
+
+```
+
+</details>
+
+<details>
+
+<summary>User account creation disguised in a computer account</summary>
+
+```yaml
+title: User account creation disguised in a computer account
+description: Detects scenarios where an attacker creates a user account that fakes a computer account.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account
+- https://www.securonix.com/blog/securonix-threat-labs-security-advisory-threat-actors-target-mssql-servers-in-dbjammer-to-deliver-freeworld-ransomware/
+tags:
+- attack.persistence
+- attack.t1098 # account manipulation
+- attack.t1136 # user creation
+- attack.defense_evesion
+- attack.t0136 # masquerading
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+
+  selection_creation:
+    EventID: 4720 # User account creation
+    TargetUserName|endswith: '$'
+
+  selection_renamed:
+    EventID: 4781 # User account name change
+    NewTargetUserName|endswith: '$' 
+
+  filter:
+    OldTargetUserName|endswith: '$' 
+
+  condition: selection_creation or (selection_renamed and not filter)
+falsepositives:
+- None
+level: high
+
+```
+
+</details>
+
+<details>
+
+<summary>User creation via commandline</summary>
+
+```yaml
+title: User creation via commandline
+description: Detects scenarios where an attacker attempts to create a user via commandline.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account
+- https://blogs.jpcert.or.jp/en/2016/01/windows-commands-abused-by-attackers.html
+- https://thedfirreport.com/2021/11/15/exchange-exploit-leads-to-domain-wide-ransomware/
+- https://attack.mitre.org/software/S0039/
+- https://regex101.com/r/S6vTNM/1
+tags:
+- attack.persistence
+- attack.t1136.001
+- attack.t1136.002
+author: mdecrevoisier
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection: # Full command example: 'net user <username> <password> /ADD'
+    NewProcessName|endswith:
+      - \net1.exe
+      - \net.exe
+    CommandLine|contains|all:
+      - net
+      - user
+      - add
+  condition: selection
+falsepositives:
+- Pentest
+- Administrator activity
+level: high
+```
+
+</details>
+
+<details>
+
+<summary>Fortinet APT group abuse on Windows (user)</summary>
+
+```yaml
+title: Fortinet APT group abuse on Windows (user)
+description: Detects scenarios where APT actors exploits Fortinet vulnerabilities to gain access into Windows infrastructure.
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/EVTX_full_APT_attack_steps
+- https://www.aha.org/system/files/media/file/2021/05/fbi-flash-tlp-white-apt-actors-exploiting-fortinet-vulnerabilities-to-gain-access-for-malicious-activity-5-27-21.pdf
+- https://www.securityweek.com/fbi-shares-iocs-apt-attacks-exploiting-fortinet-vulnerabilities
+tags:
+- attack.persistence
+- attack.t1136
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4720
+    TargetUserName:
+      - elie
+      - WADGUtilityAccount
+  condition: selection
+falsepositives:
+- None
+level: high
+```
+
+</details>
+
+<details>
+
+<summary>Hidden account creation (with fast deletion)</summary>
+
+```yaml
+title: Hidden account creation (with fast deletion)
+description: Detects scenarios where an attacker creates a hidden local account. See also rule "User account creation disguised in a computer account".
+references:
+- https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0003-Persistence/T1136-Create%20account
+- https://github.com/wgpsec/CreateHiddenAccount
+tags:
+- attack.persistence
+- attack.t1098 # account manipulation
+- attack.t1136 # user creation
+- attack.defense_evesion
+- attack.t0136 # masquerading
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection_create:
+    EventID: 4720
+  selection_delete:
+    EventID: 4726
+  filter:
+    Computer: '%domain_controllers%'
+  condition: selection_create and selection_delete and not filter # requires grouping over 'TargetSid' to not mix different user accounts
+  timeframe: 1m
+falsepositives:
+- IAM account lifecycle software
+level: medium
+```
+
+</details>
 
 ***
 
