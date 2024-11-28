@@ -2,8 +2,7 @@
 
 * [Overview](README.md)
 * [Lab Architecture](lab-architecture.md)
-* [AD Setup](ad-setup/README.md)
-  * [Setup Powershell Logging](ad-setup/setup-powershell-logging.md)
+* [AD Setup](ad-setup.md)
 * [Splunk Installation](splunk-installation.md)
 * [Installing MITRE Caldera](installing-mitre-caldera.md)
 
@@ -29,4 +28,10 @@
 ## Powershell Operational
 
 * [Powershell Logging](powershell-operational/powershell-logging/README.md)
-  * [DSRM password changed (Reg via PowerShell)](powershell-operational/powershell-logging/dsrm-password-changed-reg-via-powershell.md)
+  * [Kerberos Unconstrained Delegation](powershell-operational/powershell-logging/kerberos-unconstrained-delegation.md)
+  * [Kerberos Pre-Auth Discovery/Disabled commands detected](powershell-operational/powershell-logging/kerberos-pre-auth-discovery-disabled-commands-detected.md)
+
+## Account Logon
+
+* [Kerberos Service Ticket Operations](account-logon/kerberos-service-ticket-operations/README.md)
+  * [A Kerberos service ticket was requested](account-logon/kerberos-service-ticket-operations/a-kerberos-service-ticket-was-requested.md)
