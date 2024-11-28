@@ -13,6 +13,7 @@
   * [User Created/Deleted](account-management/user-account-management/user-created-deleted.md)
   * [User Password Changed/Reset](account-management/user-account-management/user-password-changed-reset.md)
   * [User Account Disable/Enable](account-management/user-account-management/user-account-disable-enable.md)
+  * [User Account Changed](account-management/user-account-management/user-account-changed.md)
 * [Computer Account Management](account-management/computer-account-management.md)
 * [Security Group Management](account-management/security-group-management/README.md)
   * [Group Member Added/Removed](account-management/security-group-management/group-member-added-removed.md)

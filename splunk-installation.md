@@ -5,12 +5,15 @@
 3. Set up a **Receiver** inside **Forwarding and Receiving** for Splunk Enterprise with the following guide [here](https://docs.splunk.com/Documentation/Forwarder/8.2.6/Forwarder/Enableareceiver).
 4. Now we can configure the `inputs.conf` of Windows universal forwarder to get the logs accordingly. The default path for `inputs.conf` is **$SPLUNK\_HOME/etc/system/local** (Create the file if it is not present)**.** Paste the below configuration in that file.
 
+{% code overflow="wrap" %}
 ```bash
 # Windows platform-specific input processor.
 [WinEventLog://Application]
 disabled = 0 
 [WinEventLog://Security]
-disabled = 0 
+disabled = 0
+# If you want to resolve the IDs of AD Objects
+# evt_resolve_ad_obj = 1 
 [WinEventLog://System]
 disabled = 0 
 
@@ -26,7 +29,14 @@ disabled = 0
 [WinEventLog://Windows PowerShell]
 disabled = 0
 index=ad-powershell # Get it in a different index
+
+[WinEventLog://Microsoft-Windows-PowerShell/Operational]
+disabled = 0
+# If we don't want localized string substitution used in Windows event logs to resolve specific User Account Control (UAC) flags into human-readable descriptions.
+# renderXml = 1
+index = ad-ps-operational
 ```
+{% endcode %}
 
 After that restart the Windows Universal Forwarder to apply the changed settings. Go to **$SPLUNK\_HOME/bin** and run a CMD terminal. Run `./splunk.exe restart` to restart the forwarder.
 
@@ -37,7 +47,7 @@ After that restart the Windows Universal Forwarder to apply the changed settings
 
 ### References
 
-1. [https://lantern.splunk.com/Security/Product\_Tips/Enterprise\_Security/Configuring\_Windows\_security\_audit\_policies\_for\_Enterprise\_Security\_visibility](https://lantern.splunk.com/Security/Product\_Tips/Enterprise\_Security/Configuring\_Windows\_security\_audit\_policies\_for\_Enterprise\_Security\_visibility)
+1. [https://lantern.splunk.com/Security/Product\_Tips/Enterprise\_Security/Configuring\_Windows\_security\_audit\_policies\_for\_Enterprise\_Security\_visibility](https://lantern.splunk.com/Security/Product_Tips/Enterprise_Security/Configuring_Windows_security_audit_policies_for_Enterprise_Security_visibility)
 2. [https://docs.splunk.com/Documentation/Splunk/9.3.2/Data/MonitorWindowseventlogdata](https://docs.splunk.com/Documentation/Splunk/9.3.2/Data/MonitorWindowseventlogdata)
 3. [https://docs.splunk.com/Documentation/Forwarder/9.3.2/Forwarder/Installtheuniversalforwardersoftware](https://docs.splunk.com/Documentation/Forwarder/9.3.2/Forwarder/Installtheuniversalforwardersoftware)
 4. [https://docs.splunk.com/Documentation/Splunk/9.3.2/Data/UsetheHTTPEventCollector](https://docs.splunk.com/Documentation/Splunk/9.3.2/Data/UsetheHTTPEventCollector)
