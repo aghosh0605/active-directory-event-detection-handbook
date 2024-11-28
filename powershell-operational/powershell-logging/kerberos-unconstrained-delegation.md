@@ -106,7 +106,7 @@ Path:
 
 ### Splunk Alert
 
-
+<figure><img src="../../.gitbook/assets/image (7).png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
 
 ### References
 

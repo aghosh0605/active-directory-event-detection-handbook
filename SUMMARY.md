@@ -19,6 +19,11 @@
   * [Change Detection in Group](account-management/security-group-management/change-detection-in-group.md)
   * [Group Deleted](account-management/security-group-management/group-deleted.md)
 
+## Account Logon
+
+* [Kerberos Service Ticket Operations](account-logon/kerberos-service-ticket-operations/README.md)
+  * [A Kerberos service ticket was requested](account-logon/kerberos-service-ticket-operations/a-kerberos-service-ticket-was-requested.md)
+
 ## Process Tracking
 
 * [Process Creation](process-tracking/process-creation/README.md)
@@ -30,8 +35,3 @@
 * [Powershell Logging](powershell-operational/powershell-logging/README.md)
   * [Kerberos Unconstrained Delegation](powershell-operational/powershell-logging/kerberos-unconstrained-delegation.md)
   * [Kerberos Pre-Auth Discovery/Disabled commands detected](powershell-operational/powershell-logging/kerberos-pre-auth-discovery-disabled-commands-detected.md)
-
-## Account Logon
-
-* [Kerberos Service Ticket Operations](account-logon/kerberos-service-ticket-operations/README.md)
-  * [A Kerberos service ticket was requested](account-logon/kerberos-service-ticket-operations/a-kerberos-service-ticket-was-requested.md)
