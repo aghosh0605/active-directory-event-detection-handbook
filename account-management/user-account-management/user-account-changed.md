@@ -52,12 +52,17 @@ Set-ADAccountControl -Identity testuser -DoesNotRequirePreAuth $true
 
 ### Splunk Queries
 
+To detect Account set with Kerberos pre-authentication.
+
 {% code overflow="wrap" %}
 ```splunk-spl
-index="ad-ps-operational"  EventCode IN(4103,4104) (("Get-ADUser" AND "DoesNotRequirePreAuth") OR ("*Set-ADAccountControl*" AND "*DoesNotRequirePreAuth $true*"))
-|table index sourcetype host EventCode Message |rename EventCode as event_code Message as message
+index=ad-test (EventID="4738" AND UserAccountControl="%%2096")
 ```
 {% endcode %}
+
+{% hint style="warning" %}
+To get the UserAccountControl filters work, in the Splunk **inputs.conf** file, the **renderXml** option for Windows Security Logs should be enabled like [this](../../splunk-installation.md).
+{% endhint %}
 
 ***
 

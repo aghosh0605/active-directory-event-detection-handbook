@@ -33,7 +33,7 @@ index=ad-powershell # Get it in a different index
 [WinEventLog://Microsoft-Windows-PowerShell/Operational]
 disabled = 0
 # If we don't want localized string substitution used in Windows event logs to resolve specific User Account Control (UAC) flags into human-readable descriptions.
-# renderXml = 1
+# renderXml = true
 index = ad-ps-operational
 ```
 {% endcode %}

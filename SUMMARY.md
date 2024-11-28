@@ -25,3 +25,8 @@
 * [Process Creation](process-tracking/process-creation/README.md)
   * [4688](process-tracking/process-creation/4688.md)
   * [4696](process-tracking/process-creation/4696.md)
+
+## Powershell Operational
+
+* [Powershell Logging](powershell-operational/powershell-logging/README.md)
+  * [DSRM password changed (Reg via PowerShell)](powershell-operational/powershell-logging/dsrm-password-changed-reg-via-powershell.md)
