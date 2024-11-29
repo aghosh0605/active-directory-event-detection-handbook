@@ -6,6 +6,11 @@
 * [Splunk Installation](splunk-installation.md)
 * [Installing MITRE Caldera](installing-mitre-caldera.md)
 
+## Account Logon
+
+* [Kerberos Service Ticket Operations](account-logon/kerberos-service-ticket-operations/README.md)
+  * [Kerberos TGS was requested](account-logon/kerberos-service-ticket-operations/a-kerberos-service-ticket-was-requested.md)
+
 ## Account Management
 
 * [User Account Management](account-management/user-account-management/README.md)
@@ -19,10 +24,10 @@
   * [Change Detection in Group](account-management/security-group-management/change-detection-in-group.md)
   * [Group Deleted](account-management/security-group-management/group-deleted.md)
 
-## Account Logon
+## Object Access
 
-* [Kerberos Service Ticket Operations](account-logon/kerberos-service-ticket-operations/README.md)
-  * [Kerberos TGS was requested](account-logon/kerberos-service-ticket-operations/kerberos-tgs-was-requested.md)
+* [Other Object Access Events](object-access/other-object-access-events/README.md)
+  * [Scheduled Task Monitoring](object-access/other-object-access-events/scheduled-task-monitoring.md)
 
 ## Process Tracking
 
@@ -35,3 +40,4 @@
 * [Powershell Logging](powershell-operational/powershell-logging/README.md)
   * [Kerberos Unconstrained Delegation](powershell-operational/powershell-logging/kerberos-unconstrained-delegation.md)
   * [Kerberos Pre-Auth Discovery/Disabled commands detected](powershell-operational/powershell-logging/kerberos-pre-auth-discovery-disabled-commands-detected.md)
+  * [Download String Command Detected](powershell-operational/powershell-logging/download-string-command-detected.md)

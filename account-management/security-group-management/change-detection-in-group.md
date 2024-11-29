@@ -112,7 +112,7 @@ To get more detailed info about what changed in the group. Please enable the req
 
 ### Splunk Alert
 
-<figure><img src="../../.gitbook/assets/image (2) (1).png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (2) (1) (1).png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
 
 ### Sigma Rules
 

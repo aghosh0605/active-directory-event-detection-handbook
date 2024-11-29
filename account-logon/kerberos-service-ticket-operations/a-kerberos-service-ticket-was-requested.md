@@ -94,7 +94,7 @@ Additional Information:
 
 ### Splunk Alert
 
-
+<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
 
 ***
 
