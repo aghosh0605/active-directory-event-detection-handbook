@@ -10,6 +10,10 @@
 
 Monitoring these events collectively is critical to detect unauthorized task creation, modification, or deletion, which can be indicative of persistence mechanisms in attacks.
 
+{% hint style="warning" %}
+Kindly enable the respective audit policy to get the logs. Follow the steps mentioned [here](./).
+{% endhint %}
+
 ***
 
 ### Use Case Implementation
