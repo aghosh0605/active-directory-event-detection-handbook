@@ -22,7 +22,7 @@
 ## Account Logon
 
 * [Kerberos Service Ticket Operations](account-logon/kerberos-service-ticket-operations/README.md)
-  * [A Kerberos service ticket was requested](account-logon/kerberos-service-ticket-operations/a-kerberos-service-ticket-was-requested.md)
+  * [Kerberos TGS was requested](account-logon/kerberos-service-ticket-operations/kerberos-tgs-was-requested.md)
 
 ## Process Tracking
 
