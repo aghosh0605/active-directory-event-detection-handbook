@@ -1,7 +1,5 @@
 # Domain Policy was changed
 
-## Domain Policy Change Detection
-
 ### Event Description
 
 * **Event ID 4739**: This event is logged when a domain-wide security policy is modified. It provides details about the domain being affected, the specific policy changes, and the account responsible for initiating the change. Monitoring this event is critical to track changes in security posture and detect unauthorized modifications to domain-wide settings.

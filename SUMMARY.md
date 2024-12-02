@@ -36,6 +36,10 @@
 * [Other System Events](system/other-system-events/README.md)
   * [Unexpected WMI shutdown](system/other-system-events/unexpected-wmi-shutdown.md)
 
+## Non Audit
+
+* [Log Clear](non-audit/log-clear.md)
+
 ## Process Tracking
 
 * [Process Creation](process-tracking/process-creation/README.md)
