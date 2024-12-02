@@ -1,7 +1,5 @@
 # Log Clear
 
-## Audit Log Clearing Detection
-
 ### Event Description
 
 * **Event ID 1102**: This event is logged when the security log is cleared on a Windows system. It is critical to monitor this event, as clearing the security logs may indicate an attempt to cover malicious activities. The event includes details about the account responsible for clearing the logs.

@@ -114,7 +114,7 @@ Message=The process C:\Windows\System32\RuntimeBroker.exe (WIN-3BK7E06Q35B) has 
 
 ### Splunk Alert
 
-<figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
 
 ### References
 
