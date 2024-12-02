@@ -23,11 +23,18 @@
   * [Group Member Added/Removed](account-management/security-group-management/group-member-added-removed.md)
   * [Change Detection in Group](account-management/security-group-management/change-detection-in-group.md)
   * [Group Deleted](account-management/security-group-management/group-deleted.md)
+* [Other Account Management Events](account-management/other-account-management-events/README.md)
+  * [Domain Policy was changed](account-management/other-account-management-events/domain-policy-was-changed.md)
 
 ## Object Access
 
 * [Other Object Access Events](object-access/other-object-access-events/README.md)
   * [Scheduled Task Monitoring](object-access/other-object-access-events/scheduled-task-monitoring.md)
+
+## System
+
+* [Other System Events](system/other-system-events/README.md)
+  * [Unexpected WMI shutdown](system/other-system-events/unexpected-wmi-shutdown.md)
 
 ## Process Tracking
 
@@ -41,8 +48,3 @@
   * [Kerberos Unconstrained Delegation](powershell-operational/powershell-logging/kerberos-unconstrained-delegation.md)
   * [Kerberos Pre-Auth Discovery/Disabled commands detected](powershell-operational/powershell-logging/kerberos-pre-auth-discovery-disabled-commands-detected.md)
   * [Download String Command Detected](powershell-operational/powershell-logging/download-string-command-detected.md)
-
-## System
-
-* [Other System Events](system/other-system-events/README.md)
-  * [Unexpected WMI shutdown](system/other-system-events/unexpected-wmi-shutdown.md)

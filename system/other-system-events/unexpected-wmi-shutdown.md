@@ -1,7 +1,5 @@
 # Unexpected WMI shutdown
 
-## System Shutdown or Restart Detection
-
 ### Event Description
 
 * **Event ID 1074**: This event is logged when a system shutdown or restart is initiated. It captures details such as:
@@ -118,3 +116,8 @@ Message=The process C:\Windows\System32\RuntimeBroker.exe (WIN-3BK7E06Q35B) has 
 
 <figure><img src="../../.gitbook/assets/image.png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
 
+### References
+
+1. [https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/stop-computer?view=powershell-7.4](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/stop-computer?view=powershell-7.4)
+2. [https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/restart-computer?view=powershell-7.4](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/restart-computer?view=powershell-7.4)
+3. [https://learn.microsoft.com/en-us/troubleshoot/windows-server/system-management-components/identify-cause-of-wmi-shutdown](https://learn.microsoft.com/en-us/troubleshoot/windows-server/system-management-components/identify-cause-of-wmi-shutdown)
