@@ -31,6 +31,8 @@
 
 * [Other Object Access Events](object-access/other-object-access-events/README.md)
   * [Scheduled Task Monitoring](object-access/other-object-access-events/scheduled-task-monitoring.md)
+* [Registry](object-access/registry/README.md)
+  * [Registry Value Modified](object-access/registry/registry-value-modified.md)
 
 ## System
 
