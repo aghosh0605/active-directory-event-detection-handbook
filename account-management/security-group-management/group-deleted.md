@@ -98,8 +98,6 @@ Additional Information:
 
 <figure><img src="../../.gitbook/assets/image (4).png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
 
-### Sigma Rules
-
 ### References
 
 1. [https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/audit-security-group-management](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/audit-security-group-management)
