@@ -65,3 +65,8 @@
   * [Kerberos Unconstrained Delegation](powershell-operational/powershell-logging/kerberos-unconstrained-delegation.md)
   * [Kerberos Pre-Auth Discovery/Disabled commands detected](powershell-operational/powershell-logging/kerberos-pre-auth-discovery-disabled-commands-detected.md)
   * [Download String Command Detected](powershell-operational/powershell-logging/download-string-command-detected.md)
+
+## Policy Change
+
+* [Authorization Policy Change](policy-change/authorization-policy-change/README.md)
+  * [User Rights Escalated](policy-change/authorization-policy-change/user-rights-escalated.md)
