@@ -271,10 +271,8 @@ level: high
 {% code overflow="wrap" %}
 ```splunk-spl
 source="WinEventLog:Security" EventCode=4769 TicketEncryptionType=23 Status=0 NOT (ServiceName="*$" OR ServiceSid="S-1-5-21-*-0" OR ServiceSid="*-502" OR TargetUserName="*$@*" OR IpAddress IN ("::1", "127.0.0.1", "%domain_controllers_ips%"))
-
 | bin _time span=30m
 | stats dc(IpAddress) as value_count by _time ServiceName
-
 | search value_count >= 2
 ```
 {% endcode %}

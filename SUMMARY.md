@@ -10,6 +10,8 @@
 
 * [Kerberos Service Ticket Operations](account-logon/kerberos-service-ticket-operations/README.md)
   * [Kerberos TGS was requested](account-logon/kerberos-service-ticket-operations/a-kerberos-service-ticket-was-requested.md)
+* [Kerberos Authentication Service](account-logon/kerberos-authentication-service/README.md)
+  * [Kerberos pre-authentication failed](account-logon/kerberos-authentication-service/kerberos-pre-authentication-failed.md)
 
 ## Account Management
 
@@ -49,6 +51,7 @@
 
 * [Security Log Clear](non-audit/security-log-clear.md)
 * [Security Log Full](non-audit/security-log-full.md)
+* [Event Logging Service Shut Down](non-audit/event-logging-service-shut-down.md)
 
 ## Process Tracking
 
