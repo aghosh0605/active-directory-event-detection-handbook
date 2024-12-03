@@ -28,6 +28,11 @@
 * [Other Account Management Events](account-management/other-account-management-events/README.md)
   * [Domain Policy was changed](account-management/other-account-management-events/domain-policy-was-changed.md)
 
+## Logon/Logoff
+
+* [Logon](logon-logoff/logon/README.md)
+  * [Account Failed to Log on](logon-logoff/logon/account-failed-to-log-on.md)
+
 ## Object Access
 
 * [Other Object Access Events](object-access/other-object-access-events/README.md)
