@@ -296,7 +296,7 @@ level: high
 
 <details>
 
-<summary>Brutforce enumeration with non existing users (logi</summary>
+<summary>Brutforce enumeration with non existing users (login)</summary>
 
 ```yaml
 title: Brutforce enumeration with non existing users (login)
@@ -350,3 +350,257 @@ source="WinEventLog:Security" EventCode=4625 SubStatus="0xc0000064" NOT IpAddres
 
 </details>
 
+<details>
+
+<summary>Brutforce with denied access due to account restrictions policies</summary>
+
+```yaml
+title: Brutforce with denied access due to account restrictions policies
+name: bruteforce_denied_account_restriction_policies
+description: Detects scenarios where an attacker attemps to use a comprimised account but failed to login due to account restrictions policies (permissions, time restrictions, workstation, logon type, ...)
+references:
+  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0001-Initial%20access/T1078-Valid%20accounts
+  - https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/event-4625
+tags:
+  - attack.privilege_escalation
+  - attack.t1078
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4625
+    Status: # Failure code can be defined in "Status" or "Substatus" fields. Usually, if Substatus == 0x0, refers to Status.
+      - "0xc0000022" # STATUS_ACCESS_DENIED - A process has requested access to an object, but has not been granted those access rights.
+      - "0xC0000413" # STATUS_AUTHENTICATION_FIREWALL_FAILED - Account is not allowed to authenticate to the machine
+      - "0xC000006E" # STATUS_ACCOUNT_RESTRICTION - Indicates a referenced user name and authentication information are valid, but some user account restriction has prevented successful authentication (such as time-of-day restrictions).
+      - "0xC000006F" # STATUS_INVALID_LOGON_HOURS - The user account has time restrictions and cannot be logged onto at this time.
+      - "0xC0000070" # STATUS_INVALID_WORKSTATION - The user account is restricted so that it cannot be used to log on from the source workstation.
+      - "0xC000015B" # STATUS_LOGON_TYPE_NOT_GRANTED - A user has requested a type of logon (for example, interactive or network) that has not been granted. An administrator has control over who can logon interactively and through the network.
+  condition: selection
+falsepositives:
+  - missconfigured accounts
+level: medium
+
+---
+title: Brutforce with denied access due to account restrictions policies Count
+status: experimental
+correlation:
+  type: value_count
+  rules:
+    - bruteforce_denied_account_restriction_policies # Referenced here
+  group-by:
+    - Computer
+  timespan: 30m
+  condition:
+    gte: 10
+    field: EventRecordID
+level: high
+
+```
+
+```splunk-spl
+source="WinEventLog:Security" EventCode=4625 Status IN ("0xc0000022", "0xC0000413", "0xC000006E", "0xC000006F", "0xC0000070", "0xC000015B")
+| bin _time span=30m
+| stats dc(EventRecordID) as value_count by _time Computer
+| search value_count >= 10
+```
+
+</details>
+
+<details>
+
+<summary>Detection of default a Windows host name in login attempts</summary>
+
+```yaml
+title: Detection of default a Windows host name in login attempts
+description: Detects scenarios where a default Windows host name pattern (WIN-...) is detected during a login attempt. Having a host with a default name may be an indicator of a fresh machine deployed by an attacker to evade detection and perform malicious activities.
+references:
+- https://cybercx.com.au/blog/akira-ransomware/
+- https://www.techtarget.com/searchenterprisedesktop/blog/Windows-Enterprise-Desktop/Win10-ComputerName-Generation
+tags:
+- attack.defense_evasion
+- attack.t1564.006 # Hide Artifacts: Run Virtual Instance 
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 
+      - 4624 
+      - 4625
+      - 4776
+    WorkstationName|startswith:
+      - 'WIN-'
+      - 'DESKTOP-'
+      - 'PC-'
+      - 'WORKSTATION-'
+  condition: selection
+falsepositives:
+- companies using these default patterns
+level: medium
+```
+
+{% code overflow="wrap" %}
+```splunk-spl
+source=WinEventLog:Security AND ((EventID="4624" OR EventID="4625" OR EventID="4776") AND (WorkstationName="WIN-*" OR WorkstationName="DESKTOP-*" OR WorkstationName="PC-*" OR WorkstationName="WORKSTATION-*"))
+```
+{% endcode %}
+
+</details>
+
+<details>
+
+<summary>RDP discovery performed on multiple host</summary>
+
+```yaml
+title: RDP discovery performed on multiple hosts
+name: rdp_discovery_multiple_host
+description: Detects scenarios where an attacker attempts to discover active RDP services via tools like Hydra. Note that this event doesn't provide any information about login outcome (success or failure) as well as user information. For further correlation, ID 4624/4625 (logon type 3, 7 or 10) as well as ID 1149 should be used.
+references:
+  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0007-Discovery/T1046-Network%20Service%20Scanning
+  - https://github.com/mehranexpert/Crazy-RDP
+  - https://github.com/3gstudent/SharpRDPCheck
+  - https://ponderthebits.com/2018/02/windows-rdp-related-event-logs-identification-tracking-and-investigation/
+  - https://purerds.org/remote-desktop-security/auditing-remote-desktop-services-logon-failures-1/
+  - http://woshub.com/rdp-connection-logs-forensics-windows/
+  - https://jpcertcc.github.io/ToolAnalysisResultSheet/details/mstsc.htm
+  - https://github.com/AndrewRathbun/DFIRMindMaps/tree/main/OSArtifacts/Windows/RDP_Authentication_Artifacts
+  - https://github.com/TonyPhipps/SIEM/blob/master/Notable-Event-IDs.md#microsoft-windows-remotedesktopservices-rdpcoretsoperational
+  - https://dfironthemountain.wordpress.com/2019/02/15/rdp-event-log-dfir/
+  - https://nullsec.us/windows-event-id-1029-hashes/
+  - https://www.13cubed.com/downloads/rdp_flowchart.pdf
+  - https://nullsec.us/windows-rdp-related-event-logs-the-client-side-of-the-story/
+tags:
+  - attack.discovery
+  - attack.t1046 # network service scanning
+  - attack.credential_access
+  - attack.t1110 # brutforce
+  - attack.lateral_movement
+  - attack.t1021.001 # remote services: RDP
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  category: rdp
+detection:
+  selection:
+    EventID: 131 # The server accepted a new TCP connection from client <ip>:<port>.
+    Channel: Microsoft-Windows-RemoteDesktopServices-RdpCoreTS/Operational
+  filter:
+    IpAddress: # In ID 131, IP address is provided in "ClientIP.split(":")[0]
+      - "%vulnerability_scanners%"
+      - "%admin_jump_hosts%"
+      - "127.0.0.1"
+      - "::1"
+  condition: selection and not filter
+falsepositives:
+  - VAS scanners, administrator jump host
+level: high
+
+---
+title: RDP discovery performed on multiple hosts Count
+status: experimental
+correlation:
+  type: value_count
+  rules:
+    - rdp_discovery_multiple_host # Referenced here
+  group-by:
+    - IpAddress
+  timespan: 5m
+  condition:
+    gte: 20
+    field: Computer # Count of many computer are reporting connection attemps from a single source IP
+level: high
+
+```
+
+<pre class="language-splunk-spl"><code class="lang-splunk-spl">EventCode=131 Channel="Microsoft-Windows-RemoteDesktopServices-RdpCoreTS/Operational" NOT (IpAddress IN ("%vulnerability_scanners%", "%admin_jump_hosts%", "127.0.0.1", "::1"))
+| bin _time span=5m
+| stats dc(Computer) as value_count by _time IpAddress
+<strong>| search value_count >= 20
+</strong></code></pre>
+
+</details>
+
+<details>
+
+<summary>RDP reconnaissance with valid credentials performed on multiple hosts</summary>
+
+```yaml
+title: RDP reconnaissance with valid credentials performed on multiple hosts
+name: rdp_reconnaissance_valid_cred
+description: Detects scenarios where an attacker attempts to brutforce RDP services with compromised credentials via tools like Hydra. Note that this event will be reported only with valid user and password credentials, and it may be reported only when RDP session is fully opened (so not during reconnaisance phase) if NLA is disabled. For further correlation, ID 4624/4625 (logon type 3, 7 or 10) should be used.
+references:
+  - https://github.com/mdecrevoisier/EVTX-to-MITRE-Attack/tree/master/TA0001-Initial%20access/T1078-Valid%20accounts
+  - https://github.com/mehranexpert/Crazy-RDP
+  - https://github.com/3gstudent/SharpRDPCheck
+  - https://ponderthebits.com/2018/02/windows-rdp-related-event-logs-identification-tracking-and-investigation/
+  - https://purerds.org/remote-desktop-security/auditing-remote-desktop-services-logon-failures-1/
+  - http://woshub.com/rdp-connection-logs-forensics-windows/
+  - https://jpcertcc.github.io/ToolAnalysisResultSheet/details/mstsc.htm
+  - https://github.com/AndrewRathbun/DFIRMindMaps/tree/main/OSArtifacts/Windows/RDP_Authentication_Artifacts
+  - https://github.com/TonyPhipps/SIEM/blob/master/Notable-Event-IDs.md#microsoft-windows-remotedesktopservices-rdpcoretsoperational
+  - https://dfironthemountain.wordpress.com/2019/02/15/rdp-event-log-dfir/
+  - https://nullsec.us/windows-event-id-1029-hashes/
+  - https://www.13cubed.com/downloads/rdp_flowchart.pdf
+  - https://nullsec.us/windows-rdp-related-event-logs-the-client-side-of-the-story/
+tags:
+  - attack.initial_access
+  - attack.t1078 # valid account
+  - attack.lateral_movement
+  - attack.t1021.001 # remote services: RDP
+author: mdecrevoisier
+status: experimental
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 1149 # 'User authentication succeeded': DOES NOT indicate a successful user authentication !!!
+    Channel: Microsoft-Windows-TerminalServices-RemoteConnectionManager/Operational
+  filter:
+    IpAddress: # In ID 1149, IP address is provided in "EventXML.Param3"
+      - "%vulnerability_scanners%"
+      - "%admin_jump_hosts%"
+      - "127.0.0.1"
+      - "::1"
+
+  condition: selection and not filter
+falsepositives:
+  - VAS scanners, administrator jump host
+level: high
+
+---
+title: RDP reconnaissance with valid credentials performed on multiple hosts Count
+status: experimental
+correlation:
+  type: value_count
+  rules:
+    - rdp_reconnaissance_valid_cred # Referenced here
+  group-by:
+    - IpAddress
+  timespan: 5m
+  condition:
+    gte: 20
+    field: Computer
+level: high
+
+```
+
+```splunk-spl
+source="WinEventLog:Security" EventCode=1149 Channel="Microsoft-Windows-TerminalServices-RemoteConnectionManager/Operational" NOT (IpAddress IN ("%vulnerability_scanners%", "%admin_jump_hosts%", "127.0.0.1", "::1"))
+| bin _time span=5m
+| stats dc(Computer) as value_count by _time IpAddress
+| search value_count >= 20
+```
+
+</details>
+
+### References
+
+1. [https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4625](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4625)
