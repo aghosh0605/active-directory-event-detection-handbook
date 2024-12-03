@@ -18,6 +18,7 @@
   * [User Password Changed/Reset](account-management/user-account-management/user-password-changed-reset.md)
   * [User Account Disable/Enable](account-management/user-account-management/user-account-disable-enable.md)
   * [User Account Changed](account-management/user-account-management/user-account-changed.md)
+  * [ACL Modified by AdminSDHolder](account-management/user-account-management/acl-modified-by-adminsdholder.md)
 * [Computer Account Management](account-management/computer-account-management/README.md)
   * [Computer Account Created/Deleted](account-management/computer-account-management/computer-account-created-deleted.md)
 * [Security Group Management](account-management/security-group-management/README.md)
@@ -37,11 +38,12 @@
 ## System
 
 * [Other System Events](system/other-system-events/README.md)
-  * [Unexpected WMI shutdown](system/other-system-events/unexpected-wmi-shutdown.md)
+  * [Unexpected WMI Shutdown](system/other-system-events/unexpected-wmi-shutdown.md)
 
 ## Non Audit
 
-* [Log Clear](non-audit/log-clear.md)
+* [Security Log Clear](non-audit/security-log-clear.md)
+* [Security Log Full](non-audit/security-log-full.md)
 
 ## Process Tracking
 

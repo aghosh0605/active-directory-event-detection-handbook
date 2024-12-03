@@ -1,4 +1,4 @@
-# Log Clear
+# Security Log Clear
 
 ### Event Description
 
@@ -46,6 +46,10 @@
 ### Event Viewer Logs
 
 > Audit Success 02-12-2024 12:24:26 Eventlog 1102 Log clear
+
+{% hint style="info" %}
+Event ID 104 will be created in System Logs if the system log is cleared. Tracking whether system logs are cleared or not is necessary as the [Unexpected WMI Shutdown](../system/other-system-events/unexpected-wmi-shutdown.md) use case depends on System Logs.
+{% endhint %}
 
 ***
 
