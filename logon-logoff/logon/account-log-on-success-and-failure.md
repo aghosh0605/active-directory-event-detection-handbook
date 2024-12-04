@@ -1,7 +1,8 @@
-# Account Failed to Log on
+# Account Log on Success & Failure
 
 ### Event Description
 
+* **Event ID 4624:** This is a highly valuable event since it documents each and every successful attempt to logon to the local computer regardless of logon type, location of the user or type of account.  You can tie this event to logoff events [4634](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4634) and [4647](https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/event.aspx?eventID=4647) using Logon ID.
 * **Event ID 4625**: This event is logged when an account fails to log on. It captures details such as the account name, domain, logon type, source network address, and failure reason. Monitoring failed logon attempts is critical for identifying potential brute force attacks, unauthorized access attempts, or misconfigured accounts.
 
 ***
@@ -14,6 +15,7 @@
 {% tab title="GUI" %}
 * Attempt to log in with an incorrect password multiple times on a Windows machine or domain controller.
 * Use tools such as **Remote Desktop** or **Windows Security Prompt** or **Local Login** to simulate various logon types (e.g., interactive, network).
+* Provide the correct password to get **4624**.
 {% endtab %}
 
 {% tab title="CMD" %}
@@ -25,7 +27,8 @@
     ```
 
     * Replace `NonExistentUser` with a username that does not exist or an incorrect username for an existing account.
-* When prompted for a password, enter a random incorrect password.
+* When prompted for a password, enter a random incorrect password.&#x20;
+* Provide the correct password to get **4624**.
 {% endtab %}
 
 {% tab title="Powershell" %}
@@ -38,6 +41,7 @@
 
     * Replace `"InvalidUser"` with a nonexistent or incorrect username.
     * Replace `"WrongPassword"` with any random incorrect password.
+    * Provide the correct password to get **4624**.
 {% endtab %}
 {% endtabs %}
 
@@ -55,6 +59,7 @@
 
 ### Event Viewer Logs
 
+> Audit Success 04-12-2024 12:22:16 Microsoft Windows security auditing. 4624 Logon\
 > Audit Failure 15-11-2024 12:52:05 Microsoft Windows security auditing. 4625 Logon
 
 ***
@@ -70,10 +75,81 @@ index=ad-test EventCode=4625
 ```
 {% endcode %}
 
+Below is the query to get bruteforce attempt with the help of 4624 and 4625 both.
+
+{% code overflow="wrap" %}
+```splunk-spl
+index=ad-test EventCode IN (4624,4625) user!=*$ 
+| eval user=lower(user), pass=if(action=="success","1","0"), fail=if(action=="failure","1","0")
+| bin span=30m _time
+| stats sum(fail) as failure_count sum(pass) as success_count values(EventCode) as EventCode dc(EventCode) as EventCode_Count values(Logon_Type) as Logon_Type values(LogonProcessName) as Logon_Process dc(Computer) as dvc_count values(host) as host  by _time index sourcetype, src_ip, ComputerName user
+| where (success_count>0 AND failure_count>4)
+```
+{% endcode %}
+
 ***
 
 ### Splunk Logs
 
+{% tabs %}
+{% tab title="4624" %}
+```
+12/04/2024 12:22:46 PM
+LogName=Security
+EventCode=4624
+EventType=0
+ComputerName=WIN-3BK7E06Q35B.test.com
+SourceName=Microsoft Windows security auditing.
+Type=Information
+RecordNumber=137067
+Keywords=Audit Success
+TaskCategory=Logon
+OpCode=Info
+Message=An account was successfully logged on.
+
+Subject:
+	Security ID:		S-1-0-0
+	Account Name:		-
+	Account Domain:		-
+	Logon ID:		0x0
+
+Logon Information:
+	Logon Type:		3
+	Restricted Admin Mode:	-
+	Virtual Account:		No
+	Elevated Token:		Yes
+
+Impersonation Level:		Impersonation
+
+New Logon:
+	Security ID:		S-1-5-18
+	Account Name:		WIN-3BK7E06Q35B$
+	Account Domain:		TEST.COM
+	Logon ID:		0x67CF3B
+	Linked Logon ID:		0x0
+	Network Account Name:	-
+	Network Account Domain:	-
+	Logon GUID:		{c6977805-c9cc-a909-1457-ccc18f8fb5e3}
+
+Process Information:
+	Process ID:		0x0
+	Process Name:		-
+
+Network Information:
+	Workstation Name:	-
+	Source Network Address:	127.0.0.1
+	Source Port:		57893
+
+Detailed Authentication Information:
+	Logon Process:		Kerberos
+	Authentication Package:	Kerberos
+	Transited Services:	-
+	Package Name (NTLM only):	-
+	Key Length:		0
+```
+{% endtab %}
+
+{% tab title="4625" %}
 ```
 12/03/2024 11:54:28 AM
 LogName=Security
@@ -122,10 +198,16 @@ Detailed Authentication Information:
 	Package Name (NTLM only):	-
 	Key Length:		0
 ```
+{% endtab %}
+{% endtabs %}
+
+
 
 ### Splunk Alerts
 
 <figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
+
+<figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View for Bruteforce Attempt</p></figcaption></figure>
 
 ### Sigma Rules
 

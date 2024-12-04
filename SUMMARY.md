@@ -33,7 +33,7 @@
 ## Logon/Logoff
 
 * [Logon](logon-logoff/logon/README.md)
-  * [Account Failed to Log on](logon-logoff/logon/account-failed-to-log-on.md)
+  * [Account Log on Success & Failure](logon-logoff/logon/account-log-on-success-and-failure.md)
 
 ## Object Access
 
@@ -41,6 +41,11 @@
   * [Scheduled Task Monitoring](object-access/other-object-access-events/scheduled-task-monitoring.md)
 * [Registry](object-access/registry/README.md)
   * [Registry Value Modified](object-access/registry/registry-value-modified.md)
+
+## Policy Change
+
+* [Authorization Policy Change](policy-change/authorization-policy-change/README.md)
+  * [Token and User Rights Assignment Detection](policy-change/authorization-policy-change/token-and-user-rights-assignment-detection.md)
 
 ## System
 
@@ -58,6 +63,7 @@
 * [Process Creation](process-tracking/process-creation/README.md)
   * [4688](process-tracking/process-creation/4688/README.md)
     * [AdFind Command Activity](process-tracking/process-creation/4688/adfind-command-activity.md)
+    * [Red Team Tools Detect](process-tracking/process-creation/4688/red-team-tools-detect.md)
   * [4696](process-tracking/process-creation/4696.md)
 
 ## Powershell Operational
@@ -66,8 +72,3 @@
   * [Kerberos Unconstrained Delegation](powershell-operational/powershell-logging/kerberos-unconstrained-delegation.md)
   * [Kerberos Pre-Auth Discovery/Disabled commands detected](powershell-operational/powershell-logging/kerberos-pre-auth-discovery-disabled-commands-detected.md)
   * [Download String Command Detected](powershell-operational/powershell-logging/download-string-command-detected.md)
-
-## Policy Change
-
-* [Authorization Policy Change](policy-change/authorization-policy-change/README.md)
-  * [Token and User Rights Assignment Detection](policy-change/authorization-policy-change/token-and-user-rights-assignment-detection.md)
