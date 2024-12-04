@@ -56,7 +56,8 @@
 ## Process Tracking
 
 * [Process Creation](process-tracking/process-creation/README.md)
-  * [4688](process-tracking/process-creation/4688.md)
+  * [4688](process-tracking/process-creation/4688/README.md)
+    * [AdFind Command Activity](process-tracking/process-creation/4688/adfind-command-activity.md)
   * [4696](process-tracking/process-creation/4696.md)
 
 ## Powershell Operational
@@ -69,4 +70,4 @@
 ## Policy Change
 
 * [Authorization Policy Change](policy-change/authorization-policy-change/README.md)
-  * [User Rights Escalated](policy-change/authorization-policy-change/user-rights-escalated.md)
+  * [Token and User Rights Assignment Detection](policy-change/authorization-policy-change/token-and-user-rights-assignment-detection.md)
