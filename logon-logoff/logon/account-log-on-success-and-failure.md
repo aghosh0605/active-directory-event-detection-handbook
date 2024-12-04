@@ -205,7 +205,7 @@ Detailed Authentication Information:
 
 ### Splunk Alerts
 
-<figure><img src="../../.gitbook/assets/image (1).png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/image (1) (1).png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
 
 <figure><img src="../../.gitbook/assets/image (13).png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View for Bruteforce Attempt</p></figcaption></figure>
 
