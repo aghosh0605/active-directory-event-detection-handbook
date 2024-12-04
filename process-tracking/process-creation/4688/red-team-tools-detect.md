@@ -22,12 +22,15 @@ mimikatz.exe "lsadump::lsa /inject" exit
 
 ### Splunk Query
 
+{% code overflow="wrap" %}
 ```splunk-spl
-index=ad-test EventCode=4688 (sharphound OR mimikatz)
+index=ad-test EventCode=4688
 | rename new_process_name as Process_Name
-| stats values(matched) as process_started count by index host sourcetype EventCode signature user process_path New_Process_Name Process_Name| lookup Process_Name Process_Name OUTPUT Process_Name as matched
+| stats values(matched) as process_started count by index host sourcetype EventCode signature user process_path New_Process_Name Process_Name
+| lookup Process_Name Process_Name OUTPUT Process_Name as matched
 | search matched=*
 ```
+{% endcode %}
 
 {% hint style="warning" %}
 The CSV file needs to be uploaded to the lookups in Splunk Server. Also, **Lookup definitions** is needed for not using the case-sensitive search. \
