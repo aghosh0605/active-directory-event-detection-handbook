@@ -16,14 +16,7 @@
    * Right-click **Security** and select **Properties**.
    * Set the **Maximum log size** to a small value (e.g., 1 MB) to easily trigger the log full condition.
    * Configure the action to **Do not overwrite events** or **Overwrite events as needed** for testing purposes.
-2. **Generate a High Volume of Security Events:**
-   *   Use audit policies or scripts to create many security events.\
-       Example PowerShell command:
-
-       ```powershell
-       for ($i = 0; $i -lt 10000; $i++) { Write-EventLog -LogName Security -Source Microsoft-Windows-Security-Auditing -EventId 4624 }
-       ```
-3. **Observe Event Log Full Condition:**
+2. **Observe Event Log Full Condition:**
    * Monitor the **Event Viewer** for **Event ID 1104** indicating that the security log is full.
    * Capture the event details for further analysis.
 
@@ -37,13 +30,31 @@
 
 ### Splunk Queries
 
-
+{% code overflow="wrap" %}
+```splunk-spl
+index=ad-test EventCode=1100
+|stats values(Message) as message values(signature) as signature  values(host) as host values(ComputerName) as ComputerName count by index sourcetype EventCode dest
+```
+{% endcode %}
 
 ***
 
 ### Splunk Logs
 
-
+```
+12/04/2024 05:34:50 PM
+LogName=Security
+EventCode=1100
+EventType=4
+ComputerName=WIN-3BK7E06Q35B.test.com
+SourceName=Microsoft-Windows-Eventlog
+Type=Information
+RecordNumber=142849
+Keywords=Audit Success
+TaskCategory=Service shutdown
+OpCode=Info
+Message=The event logging service has shut down.
+```
 
 ### References
 
