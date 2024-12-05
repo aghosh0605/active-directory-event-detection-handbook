@@ -41,6 +41,8 @@
   * [Scheduled Task Monitoring](object-access/other-object-access-events/scheduled-task-monitoring.md)
 * [Registry](object-access/registry/README.md)
   * [Registry Value Modified](object-access/registry/registry-value-modified.md)
+* [File Share](object-access/file-share/README.md)
+  * [Network Share Object Accessed](object-access/file-share/network-share-object-accessed.md)
 
 ## Policy Change
 
@@ -64,6 +66,7 @@
   * [4688](process-tracking/process-creation/4688/README.md)
     * [AdFind Command Activity](process-tracking/process-creation/4688/adfind-command-activity.md)
     * [Red Team Tools Detect](process-tracking/process-creation/4688/red-team-tools-detect.md)
+    * [Admin Accounts Enumeration](process-tracking/process-creation/4688/admin-accounts-enumeration.md)
   * [4696](process-tracking/process-creation/4696.md)
 
 ## Powershell Operational

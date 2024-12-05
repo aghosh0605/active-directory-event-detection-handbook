@@ -56,6 +56,10 @@ OpCode=Info
 Message=The event logging service has shut down.
 ```
 
+### Splunk Alert
+
+<figure><img src="../.gitbook/assets/image.png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
+
 ### References
 
 1. [https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-1104](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-1104)
