@@ -21,6 +21,7 @@
   * [User Account Disable/Enable](account-management/user-account-management/user-account-disable-enable.md)
   * [User Account Changed](account-management/user-account-management/user-account-changed.md)
   * [ACL Modified by AdminSDHolder](account-management/user-account-management/acl-modified-by-adminsdholder.md)
+  * [User Account Lockout](account-management/user-account-management/user-account-lockout.md)
 * [Computer Account Management](account-management/computer-account-management/README.md)
   * [Computer Account Created/Deleted](account-management/computer-account-management/computer-account-created-deleted.md)
 * [Security Group Management](account-management/security-group-management/README.md)
