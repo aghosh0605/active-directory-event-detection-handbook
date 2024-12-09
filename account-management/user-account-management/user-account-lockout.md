@@ -8,6 +8,8 @@
 
 ### Use Case Implementation
 
+{% tabs %}
+{% tab title="GUI" %}
 **Enable or Modify Account Lockout Policy:**
 
 * Open **Local Group Policy Editor** (`gpedit.msc`) or **Group Policy Management** for domain policies.
@@ -17,8 +19,6 @@
   * **Account lockout duration**: Duration the account remains locked.
   * **Reset account lockout counter after**: Time to reset the failed attempts counter.
 
-{% tabs %}
-{% tab title="GUI" %}
 **Simulating Account Lockout:**
 
 * Attempt to log in with an incorrect password multiple times (default threshold is typically 5 attempts).
@@ -153,5 +153,13 @@ Additional Information:
 ### Splunk Alert
 
 <figure><img src="../../.gitbook/assets/image (14).png" alt=""><figcaption><p>Alert Manager Dashboard in Expanded View</p></figcaption></figure>
+
+### References
+
+1. [https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4740](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4740)
+2. [https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc771525(v=ws.11)](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-r2-and-2012/cc771525\(v=ws.11\))
+3. [https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/start-process?view=powershell-7.4](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.management/start-process?view=powershell-7.4)
+4. [https://learn.microsoft.com/en-us/powershell/module/activedirectory/get-addefaultdomainpasswordpolicy?view=windowsserver2025-ps](https://learn.microsoft.com/en-us/powershell/module/activedirectory/get-addefaultdomainpasswordpolicy?view=windowsserver2025-ps)
+5. [https://learn.microsoft.com/en-us/powershell/module/activedirectory/set-addefaultdomainpasswordpolicy?view=windowsserver2025-ps](https://learn.microsoft.com/en-us/powershell/module/activedirectory/set-addefaultdomainpasswordpolicy?view=windowsserver2025-ps)
 
 ***
