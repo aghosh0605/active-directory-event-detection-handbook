@@ -87,6 +87,16 @@ index=ad-test EventCode IN (4624,4625) user!=*$
 ```
 {% endcode %}
 
+Below is one use case for pass-the-hash attack:
+
+{% code overflow="wrap" %}
+```splunk-spl
+index=ad-test  EventCode=4624 (Logon_Type=3 Logon_Process=NtLmSsp NOT Account_Name="ANONYMOUS LOGON" ) OR (Logon_Type=9 Logon_Process=seclogo Authentication_Package=Negotiate) 
+| fillnull 
+| stats count min(_time) as firstTime max(_time) as lastTime by index sourcetype host EventCode, Logon_Type, WorkstationName, user, dest
+```
+{% endcode %}
+
 ***
 
 ### Splunk Logs
