@@ -1,0 +1,75 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36" version="24.8.4">
+  <diagram name="Page-1" id="2Bqyg2hsGqpCNaapZCOn">
+    <mxGraphModel dx="6135" dy="1870" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Sb7rE-VJuIUXIWP1dDHw-10" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="-1350" y="560" width="1188.23" height="1010" as="geometry" />
+        </mxCell>
+        <mxCell id="Sb7rE-VJuIUXIWP1dDHw-1" value="&lt;font style=&quot;font-size: 40px;&quot;&gt;Domain: test.com&lt;/font&gt;" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/windows_domain.svg;" vertex="1" parent="Sb7rE-VJuIUXIWP1dDHw-10">
+          <mxGeometry width="1188.23" height="1010" as="geometry" />
+        </mxCell>
+        <mxCell id="Sb7rE-VJuIUXIWP1dDHw-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="Sb7rE-VJuIUXIWP1dDHw-10" source="Sb7rE-VJuIUXIWP1dDHw-2" target="Sb7rE-VJuIUXIWP1dDHw-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Sb7rE-VJuIUXIWP1dDHw-9" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="Sb7rE-VJuIUXIWP1dDHw-10" source="Sb7rE-VJuIUXIWP1dDHw-2" target="Sb7rE-VJuIUXIWP1dDHw-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Sb7rE-VJuIUXIWP1dDHw-2" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;DC: WIN-3BK7E06Q35B.test.com&lt;/font&gt;" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/domain_controller.svg;" vertex="1" parent="Sb7rE-VJuIUXIWP1dDHw-10">
+          <mxGeometry x="290" y="660" width="140" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="Sb7rE-VJuIUXIWP1dDHw-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="Sb7rE-VJuIUXIWP1dDHw-10" source="Sb7rE-VJuIUXIWP1dDHw-3" target="Sb7rE-VJuIUXIWP1dDHw-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="550" y="780" />
+              <mxPoint x="550" y="780" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Sb7rE-VJuIUXIWP1dDHw-3" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;DNS Server&lt;/font&gt;" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/databases.svg;" vertex="1" parent="Sb7rE-VJuIUXIWP1dDHw-10">
+          <mxGeometry x="630" y="710" width="102.04" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="Sb7rE-VJuIUXIWP1dDHw-8" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="Sb7rE-VJuIUXIWP1dDHw-10">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="628.2954637122832" y="540.0037230657746" as="sourcePoint" />
+            <mxPoint x="430.00396226415415" y="717.7798113207522" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="550.5699999999999" y="610.61" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Sb7rE-VJuIUXIWP1dDHw-7" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;File and &lt;br&gt;Storage Service&lt;/font&gt;" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/folder.svg;" vertex="1" parent="Sb7rE-VJuIUXIWP1dDHw-10">
+          <mxGeometry x="610" y="430" width="93.6" height="128.22" as="geometry" />
+        </mxCell>
+        <mxCell id="Sb7rE-VJuIUXIWP1dDHw-13" value="&lt;font style=&quot;font-size: 40px;&quot;&gt;Splunk Server&lt;br&gt;DESKTOP-HOI24NP&lt;/font&gt;" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/generic_server.svg;" vertex="1" parent="1">
+          <mxGeometry x="-40" y="820" width="168" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="Sb7rE-VJuIUXIWP1dDHw-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=5;fillColor=#d5e8d4;strokeColor=#2a6d03;" edge="1" parent="1" source="Sb7rE-VJuIUXIWP1dDHw-2" target="Sb7rE-VJuIUXIWP1dDHw-13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-990" y="970" />
+              <mxPoint x="-60" y="970" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Sb7rE-VJuIUXIWP1dDHw-16" value="&lt;font style=&quot;font-size: 25px;&quot;&gt;Logs From AD DC&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Sb7rE-VJuIUXIWP1dDHw-15">
+          <mxGeometry x="0.5587" y="5" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Sb7rE-VJuIUXIWP1dDHw-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeWidth=5;strokeColor=#FF3333;" edge="1" parent="1" source="Sb7rE-VJuIUXIWP1dDHw-18" target="Sb7rE-VJuIUXIWP1dDHw-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Sb7rE-VJuIUXIWP1dDHw-22" value="&lt;font style=&quot;font-size: 25px;&quot;&gt;Attack Simulation&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="Sb7rE-VJuIUXIWP1dDHw-21">
+          <mxGeometry x="-0.3818" y="-7" relative="1" as="geometry">
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Sb7rE-VJuIUXIWP1dDHw-18" value="&lt;span style=&quot;font-size: 40px;&quot;&gt;Caldera Server&lt;/span&gt;&lt;br&gt;&lt;span style=&quot;font-size: 40px;&quot;&gt;Debian GNU/Linux 12 (bookworm)&lt;/span&gt;" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/generic_server.svg;" vertex="1" parent="1">
+          <mxGeometry x="-1930" y="1170" width="168" height="300" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
